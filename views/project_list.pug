@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	h1= title
+
+	ul
+		each project in projects
+			li
+				a(href=project.virtUrl) #{project.title}
+
+		else
+			li
+				There are no projects 😔

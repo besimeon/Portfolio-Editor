@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	if !profile
+		p please login
+
+	else
+		if userAddedMsg
+			p User added! 
+			br
+			a(href='/') Main
+		else
+			form(method='POST' action='')
+				div.form-group
+					input(type='hidden' name='id' value=profile.id)
+					label(for='submit') add user #{profile.name} ?:
+					br
+				button(type='submit') Yes
+
+	if errors
+		ul
+			for error in errors
+				li!= error.msg

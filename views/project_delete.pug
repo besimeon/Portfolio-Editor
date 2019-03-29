@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	h1 #{title}
+	if msgNoMatchingUser
+		p #{msgNoMatchingUser}
+	else
+		p  #{project.title}
+		p  #{project.description}
+		hr
+		p Do you really want to delete this Project?
+	    
+		form(method='POST' action='')
+			div.form-group
+				input(type='hidden',name='projectid', required='true', value=project.id )
+			button.btn.btn-primary(type='submit') Delete
+
+	if errors
+		ul
+			for error in errors
+				li!= error.msg

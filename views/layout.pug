@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    if profile
+      div.profile
+        if profile.image
+          img(src=profile.image, width=100)
+        p.nav #{profile.displayName}&nbsp :: &nbsp
+          a(href='/editor/auth/logout') (logout)
+    else
+      p.login
+        a(href='/editor/auth/login') Login
+    div.topNav
+      a(href='/') Project List
+      span &nbsp :: &nbsp
+      a(href='/editor/project/create') Create Project
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+    block content

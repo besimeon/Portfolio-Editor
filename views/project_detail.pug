@@ -1,0 +1,34 @@
+extends layout
+
+block content
+
+	h1 Project: #{project.title}
+
+	div(class='projectDetails')
+
+	h4 Display order:
+
+	p #{project.displayOrder}
+
+	h4 Project Image: 
+
+	p #{project.image}
+
+	h4 Project URL: 
+
+	p #{project.URL}
+
+	h4 Project Description: 
+
+	p #{project.description}
+
+	h4 Project Languages:
+
+	p= project.langs
+
+	hr
+
+	p.bottomNav 
+		a(href= project.virtUrl +'/update') Update Project
+		span &nbsp :: &nbsp 
+		a(href= project.virtUrl +'/delete') Delete Project

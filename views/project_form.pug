@@ -1,0 +1,35 @@
+extends layout
+
+block content
+	h1 #{title}
+
+	if msgNoMatchingUser
+		p #{msgNoMatchingUser}
+
+	else
+		form(method='POST' action='')
+			div.form-group
+				label(for='title') Project Title:
+				input#title(type='text', placeholder='Project Title' name='title' required='true' value=(undefined===project ? '' : project.title))
+				br
+				label(for='displayOrder') Display Order:
+				input#displayOrder(type='number', min='0' max=(estimatedDispOrder===undefined ? '3' : estimatedDispOrder) name='displayOrder' required='true' value=(undefined===project ? (estimatedDispOrder===undefined ? '1' : estimatedDispOrder) : project.displayOrder))
+				br
+				label(for='image') Project Image:
+				input#projImg(type='text', placeholder='Project Image' name='image' required='true' value=(undefined===project ? '' : project.image))
+				br
+				label(for='URL') Project URL:
+				input#projURL(type='text', placeholder='Project URL' name='URL' required='true' value=(undefined===project ? '' : project.URL))
+				br
+				label(for='description') Project Description:
+				input#projDescription(type='text', placeholder='Project Description' name='description' required='true' value=(undefined===project ? '' : project.description))
+				br
+				label(for='langs') Project Languages:
+				input#projLangs(type='text', placeholder='Project Langs (separated by comma)' name='langs' required='true' value=(undefined===project ? '' : project.langs.join(", ")))
+				br
+			button(type='submit') Submit
+
+	if errors
+		ul
+			for error in errors
+				li!= error.msg
